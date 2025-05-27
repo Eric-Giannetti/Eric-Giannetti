@@ -2,14 +2,17 @@ name: Generate 3D Contribution Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *" # roda diariamente
-  workflow_dispatch: # executável manualmente
+    - cron: "0 0 * * *"  # roda todo dia à meia-noite
+  workflow_dispatch:     # permite execução manual
 
 jobs:
   generate-snake:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Generate Snake Animation
         uses: Platane/snk@v3
         with:
