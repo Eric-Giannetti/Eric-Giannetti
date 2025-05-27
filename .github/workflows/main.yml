@@ -1,26 +1,27 @@
-name: Generate 3D Contribution Graph
+name: Generate 3D Contribution Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *" # roda todo dia à meia-noite
-  workflow_dispatch: # permite executar manualmente
+    - cron: "0 0 * * *" # roda diariamente
+  workflow_dispatch: # executável manualmente
 
 jobs:
-  build:
+  generate-snake:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Generate Snake Animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            ./profile-3d-contrib/github-contribution-grid-snake.svg
+            ./profile-3d-contrib/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: Generate 3D Contribution Graph
-        uses: yoshi389111/github-profile-3d-contrib@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push to GitHub
+      - name: Commit & Push
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          git add -A .
-          git commit -m "update 3d contribution graph" || echo "No changes to commit"
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "generate 3d contribution snake" || echo "No changes to commit"
           git push
