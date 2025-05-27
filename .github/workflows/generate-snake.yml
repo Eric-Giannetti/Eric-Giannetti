@@ -3,17 +3,17 @@ name: Generate 3D Snake
 on:
   schedule:
     - cron: "0 0 * * *" # Executa todos os dias à meia-noite
-  workflow_dispatch:     # Permite executar manualmente
+  workflow_dispatch:     # Permite executar manualmente pelo GitHub
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Generate 3D Snake SVG
+      - name: Gerar animação Snake SVG
         uses: Platane/snk@v3
         with:
           github_user_name: Eric-Giannetti
@@ -21,7 +21,7 @@ jobs:
             ./profile-3d-contrib/github-contribution-grid-snake.svg
             ./profile-3d-contrib/github-contribution-grid-snake-dark.svg
 
-      - name: Commit and Push
+      - name: Commit e Push
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
