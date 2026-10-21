@@ -79,6 +79,6 @@
 
 ###
 
-<img data-importer="snake" src="https://raw.githubusercontent.com/Eric-Giannetti/Eric-Giannetti/snake-output/snake.svg" alt="Snake animation" />
+<img src="https://raw.githubusercontent.com/Eric-Giannetti/Eric-Giannetti/output/snake.svg" alt="Snake animation" />
 
 ###
